@@ -97,8 +97,18 @@
   justify-content: center;
 }
 
+.main-container .section.collection {
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  flex-grow:0;
+}
+
 .section.not-connected {
   flex-grow: 0;
+}
+
+img[src="3.png"] {
+  display:none;
 }
 
 .navbar.section {
