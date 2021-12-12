@@ -78,7 +78,7 @@
   text-align: left;
   display: flex;
   /* justify-content: center; */
-  flex-flow: column wrap;
+  flex-flow: row wrap;
   flex: min-content;
   overflow-y:auto;
   padding: 1em;
