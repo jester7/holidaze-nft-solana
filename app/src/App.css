@@ -84,7 +84,7 @@
   padding: 1em;
   position: relative;
   border-radius: 8px;
-  margin: 24px 18px 24px 18px;
+  margin: 24px 28px 24px 28px;
   background-color: var(--color-highlight-alpha);
   box-shadow: var(--box-shadow-light-green);
   scrollbar-color: var(--color-green-medium) var(--color-highlight-alpha);
