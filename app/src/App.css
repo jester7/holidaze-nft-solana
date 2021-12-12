@@ -1,20 +1,64 @@
+:root {
+  --color-red-deep: #ac1515;
+  --color-red-medium: #da1b1b;
+  --color-red-pink: #fab3a9;
+  --color-highlight: #f7f4f3;
+  --color-highlight-alpha: rgba(247, 244, 243, 0.94);
+  --color-tan: #ded3ce;
+  --color-green-light: #8db994;
+  --color-green-light-alpha: rgba(141, 185, 148, 0.6);
+  --box-shadow-light-green: 0px 0px 8px var(--color-green-light-alpha);
+  --color-green-medium: #46673c; /*73a465 538a2e*/
+  --color-green-dark: #243e14;
+  --color-green-dark-alpha: rgba(36, 62, 20, 0.94);
+  --gradient-candy-cane: -webkit-linear-gradient(
+    -45deg,
+    var(--color-red-deep) 5%,
+    var(--color-highlight) 10%,
+    var(--color-red-deep) 15%,
+    var(--color-highlight) 20%,
+    var(--color-red-deep) 25%,
+    var(--color-highlight) 30%,
+    var(--color-red-deep) 35%,
+    var(--color-highlight) 40%,
+    var(--color-red-deep) 45%,
+    var(--color-highlight) 50%,
+    var(--color-red-deep) 55%,
+    var(--color-highlight) 60%,
+    var(--color-red-deep) 65%,
+    var(--color-highlight) 70%,
+    var(--color-red-deep) 75%,
+    var(--color-highlight) 80%,
+    var(--color-red-deep) 85%,
+    var(--color-highlight) 90%,
+    var(--color-red-deep) 95%,
+    var(--color-highlight) 100%
+  );
+}
+
 .App {
   height: 100vh;
-  background-color: rgb(20, 20, 20);
-  overflow: scroll;
+  background: #aca484;
+  background-image: url("./assets/tijana-drndarski-1L4q_S1atmc-unsplash-3.jpg");
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center left;
   text-align: center;
-  overflow: hidden;
+  overflow: auto;
+  font-size: 16px;
+  font-family: poppins, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  width: 100%;
 }
 
 .container {
   height: 100%;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 0 30px 0 30px;
-  color: white;
+  justify-content: flex-start;
+  padding: 0 12px 0 12px;
+  color: #111111;
   position: relative;
-  /* background-color: #35aee2; */
 }
 
 .authed-container {
@@ -24,76 +68,289 @@
   padding: 30px;
 }
 
+.main-container {
+  display: flex;
+  /* justify-content: space-between; */
+  flex-direction: column;
+}
+
+.main-container .section {
+  text-align: left;
+  display: flex;
+  /* justify-content: center; */
+  flex-flow: column wrap;
+  flex: min-content;
+  overflow-y:auto;
+  padding: 1em;
+  position: relative;
+  border-radius: 8px;
+  margin: 24px 18px 24px 18px;
+  background-color: var(--color-highlight-alpha);
+  box-shadow: var(--box-shadow-light-green);
+  scrollbar-color: var(--color-green-medium) var(--color-highlight-alpha);
+  scrollbar-width: thin;
+}
+
+.main-container .section.home {
+  flex-grow: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.section.not-connected {
+  flex-grow: 0;
+}
+
+.navbar.section {
+  margin: 24px 0px 24px 0px;
+  padding: 0.75em;
+  background-color: var(--color-green-dark-alpha);
+  display: flex;
+  flex-flow: row;
+  flex-wrap:wrap;
+  flex: none; /*prevent navbar from growing vertically*/
+  border-radius: 2em;
+  box-shadow: var(--box-shadow-light-green);
+  justify-content: space-evenly;
+}
+
+.navbar li {
+  position: relative;
+  text-align: center;
+  padding: 8px 1.25em;
+  display: block;
+  border-radius: 2em;
+  flex-grow: 0;
+  margin:0px 0.5em 0px 0px;
+  
+}
+
+.navbar li:hover {
+  background-color: var(--color-green-medium);
+}
+
+.navbar li:last-child {
+  margin: 0;
+}
+
+.navbar li.selected {
+  background-color: var(--color-green-medium);
+}
+
+.navbar li.selected a {
+  color: var(--color-red-pink);
+}
+
+.navbar-item.icon {
+  padding-left: 2.5em;
+}
+
+.navbar-item a.icon::before {
+  content: "";
+  display: block;
+  width: 1.75em;
+  height: 1.75em;
+  position: absolute;
+  background-position: left;
+  background-size: contain;
+  background-repeat: no-repeat;
+  filter: saturate(0%) brightness(140%);
+  top: 0.44em;
+  left: 14px;
+}
+
+.navbar-item.twitter a::before {
+  background-image: url("./assets/twitter-logo.svg");
+}
+.navbar-item.github a::before {
+  width: 1.3em;
+  height: 1.3em;
+  top: 0.5em;
+  background-image: url("./assets/GitHub-Mark-Light-64px.png");
+}
+.main-container .section p {
+  margin: 0;
+  margin-bottom: 0.5em;
+}
+
+.main-container .section p {
+  font-size: 1.3em;
+}
+
+.main-container h2 {
+  font-size: 2em;
+  font-family: arpona, serif;
+  font-weight: 700;
+  font-style: normal;
+  color: var(--color-red-medium);
+  text-shadow: 1px 1px 3px var(--color-green-dark);
+  display: inline-block;
+  border-bottom: 1px solid var(--color-green-light);
+  width: 100%;
+  margin-bottom: 0.5em;
+  margin-top: 0;
+}
+
 .header-container {
-  /* background-color: #60c657; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
 .header {
+  color: var(--color-red-deep);
+
   margin: 0;
-  font-size: 50px;
-  font-weight: bold;
+  font-size: 5.5em;
+  font-variant: normal;
+  font-family: arpona, serif;
+  font-weight: 900;
+  font-style: normal;
 }
 
-.sub-text {
-  font-size: 25px;
+.subheader {
+  color: var(--color-red-deep);
+  font-size: 0.56em;
+  display: block;
+  margin-top: -20px;
+  text-shadow: 0px 0px 4px var(--color-green-light);
 }
 
-.gradient-text {
-  background: -webkit-linear-gradient(left, #60c657 30%, #35aee2 60%);
-  background-clip: text;
+.holidaze {
+  font-variant: normal;
+  font-family: arpona, serif;
+  font-weight: 900;
+  font-style: normal;
+  color: var(--color-red-deep);
+}
+
+.main-container span.holidaze {
+  color: var(--color-red-medium);
+}
+
+.holidaze-wrapper {
+  -webkit-text-stroke: 1px var(--color-highlight);
+  text-stroke: 1px var(--color-highlight);
+}
+
+.holidaze.candycane {
+  background: var(--gradient-candy-cane);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  background-clip: text;
+  background-size: 134% 134%;
+  text-align:center;
+
+  animation: gradient-animation 2.5s linear 2.5;
+}
+
+
+.loading-indicator {
+  background: var(--gradient-candy-cane);
+  background-size: 134% 134%;
+  width:100%;
+  height:34px;
+  animation: gradient-animation 2.5s linear infinite;
+  border-radius:8px;
+  border:1px solid var(--color-red-deep);
+  
+  color:var(--color-green-medium);
+  text-shadow:1px 1px 2px var(--color-green-light);
+}
+
+.loading-indicator .label {
+  font-family: poppins, sans-serif;
+  font-weight: 600;
+  font-style: normal;
+  padding-left:1em;
+
+}
+
+.holidaze-wrapper:hover .holidaze.candycane {
+  animation: gradient-animation 2.5s linear infinite;
+}
+
+
+button {
+  font-family: poppins, sans-serif;
+  font-weight: 600;
+  font-style: normal;
+  color: var(--color-highlight);
+}
+
+button:hover {
+  color: var(--color-red-pink); /* 199e45 aa3333 */
 }
 
 .cta-button {
   height: 45px;
   border: 0;
   width: auto;
+  max-width: 70%;
+  align-self: center;
   padding-left: 40px;
   padding-right: 40px;
   border-radius: 10px;
   cursor: pointer;
   font-size: 16px;
-  font-weight: bold;
-}
-
-.connect-wallet-button {
-  color: white;
-  background: -webkit-linear-gradient(left, #ff8867, #ff52ff);
-  background-size: 200% 200%;
-  animation: gradient-animation 4s ease infinite;
+  color: var(--color-tan);
+  background-color: var(--color-green-dark);
+  box-shadow: none;
+  animation: pulsating-animation 2.5s ease-in-out infinite;
 }
 
 .mint-button {
-  background: -webkit-linear-gradient(left, #4e44ce, #35aee2);
-  background-size: 200% 200%;
-  animation: gradient-animation 4s ease infinite;
   margin-left: 10px;
 }
 
-.footer-container {
+.links-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  position: absolute;
-  width: 100%;
-  bottom: 0;
-  left: 0;
-  /* padding-bottom: 45px; */
+  flex-direction: row;
+  width: auto;
+  background-color: none;
 }
 
 .twitter-logo {
   width: 35px;
   height: 35px;
+  align-self: center;
+  display: block;
 }
 
-.footer-text {
+.twitter-text {
   font-size: 16px;
   font-weight: bold;
-  color: white;
+  color: #eee;
+  text-decoration: none;
 }
 
-.connected-container input[type='text'] {
+a {
+  color: var(--color-green-light);
+  text-decoration: none;
+  transition: all 0.5s ease-in-out;
+  text-shadow: 1px 1px 4px rgba(34, 34, 34, 0.8);
+}
+
+a:hover {
+  color: #fff;
+  text-shadow: 0px 0px 4px rgba(95, 222, 245, 0.8);
+}
+
+.section p a {
+  color: var(--color-green-medium);
+  text-decoration: underline;
+  text-shadow:none;
+  transition:all 0.25s linear;
+}
+
+
+.section p a:hover {
+  color: var(--color-green-light);
+}
+
+.connected-container input[type="text"] {
   display: inline-block;
   padding: 10px;
   width: 50%;
@@ -110,7 +367,6 @@
   height: 50px;
 }
 
-/* KeyFrames */
 @-webkit-keyframes gradient-animation {
   0% {
     background-position: 0% 50%;
@@ -143,4 +399,406 @@
   100% {
     background-position: 0% 50%;
   }
+}
+
+@-webkit-keyframes pulsating-animation {
+  0% {
+    background-color: var(--color-green-dark);
+    box-shadow: none;
+  }
+  50% {
+    background-color: var(--color-green-medium);
+    box-shadow: 0px 0px 18px var(--color-red-deep);
+    color: var(--color-highlight);
+  }
+  100% {
+    background-color: var(--color-green-dark);
+    box-shadow: none;
+  }
+}
+@-moz-keyframes pulsating-animation {
+  0% {
+    background-color: var(--color-green-dark);
+    box-shadow: none;
+  }
+  50% {
+    background-color: var(--color-green-medium);
+    box-shadow: 0px 0px 18px var(--color-red-deep);
+    color: var(--color-highlight);
+  }
+  100% {
+    background-color: var(--color-green-dark);
+    box-shadow: none;
+  }
+}
+@keyframes pulsating-animation {
+  0% {
+    background-color: var(--color-green-dark);
+    box-shadow: none;
+  }
+  50% {
+    background-color: var(--color-green-medium);
+    box-shadow: 0px 0px 18px var(--color-red-deep);
+    color: var(--color-highlight);
+  }
+  100% {
+    background-color: var(--color-green-dark);
+    box-shadow: none;
+  }
+}
+
+@-webkit-keyframes shake-animation {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(1.5deg);
+  }
+  50% {
+    transform: rotate(0deg);
+  }
+  75% {
+    transform: rotate(-1.5deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+@-moz-keyframes shake-animation {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(1.5deg);
+  }
+  50% {
+    transform: rotate(0deg);
+  }
+  75% {
+    transform: rotate(-1.5deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes shake-animation {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(1.5deg);
+  }
+  50% {
+    transform: rotate(0deg);
+  }
+  75% {
+    transform: rotate(-1.5deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+.snow-globe {
+  margin: 0 0 16px 0;
+  background-image: url("./assets/snowglobe-front.png"),
+    url("./assets/snowman-sample-nft.png"), url("./assets/snowglobe-rear.png");
+  flex: fit-content;
+  background-size: contain, 60%, contain;
+  background-position: bottom center, center calc(100% - 90px), bottom center;
+  background-repeat: no-repeat;
+  rotate: 0deg;
+  transform-origin: bottom;
+  animation-duration: 0.5s;
+  position: relative;
+  width: 100%;
+  height: 70%;
+  min-height: 500px;
+  transform: rotate(0deg);
+}
+
+.snow-globe:hover {
+  animation: shake-animation 0.5s linear 2;
+}
+
+.snow-globe:hover .snowflake {
+  -webkit-animation-name: snowflakes-fall, snowflakes-shake;
+  -webkit-animation-duration: 10s, 3s;
+  -webkit-animation-timing-function: linear, ease-in-out;
+  -webkit-animation-iteration-count: 2, 2;
+  -webkit-animation-play-state: running, running;
+  animation-name: snowflakes-fall, snowflakes-shake;
+  animation-duration: 10s, 3s;
+  animation-timing-function: linear, ease-in-out;
+  animation-iteration-count: 2, 2;
+  animation-play-state: running, running;
+}
+
+.snow-globe .falling-snow {
+  clip-path: circle(40% at 50% 60%);
+  /* background-color:var(--color-green-dark-alpha); */
+  position: absolute;
+  height: 90%;
+  width: 100%;
+  overflow: hidden;
+  bottom: 16%;
+}
+
+.snowflake {
+  color: #fff;
+  font-size: 24px;
+  font-family: sans-serif;
+  text-shadow: 1px 1px 3px rgb(21, 23, 26);
+  filter: blur(1.25px);
+  opacity: 0;
+}
+
+@-webkit-keyframes snowflakes-fall {
+  0% {
+    top: 30%;
+    opacity: 0.4;
+  }
+  50% {
+    top: 45%;
+    opacity: 0.9;
+  }
+  75% {
+    top: 65%;
+    opacity: 0.5;
+  }
+  100% {
+    top: 75%;
+    opacity: 0.15;
+  }
+}
+@-webkit-keyframes snowflakes-shake {
+  0% {
+    -webkit-transform: translateX(0px);
+    transform: translateX(0px);
+  }
+  50% {
+    -webkit-transform: translateX(80px);
+    transform: translateX(80px);
+  }
+  100% {
+    -webkit-transform: translateX(0px);
+    transform: translateX(0px);
+  }
+}
+@keyframes snowflakes-fall {
+  0% {
+    top: 25%;
+    opacity: 0.5;
+  }
+  50% {
+    top: 45%;
+    opacity: 0.9;
+  }
+  75% {
+    top: 65%;
+    opacity: 0.5;
+  }
+  100% {
+    top: 75%;
+    opacity: 0.15;
+  }
+}
+@keyframes snowflakes-shake {
+  0% {
+    transform: translateX(0px);
+  }
+  50% {
+    transform: translateX(80px);
+  }
+  100% {
+    transform: translateX(0px);
+  }
+}
+.snowflake {
+  position: fixed;
+  top: 25%;
+  z-index: 9999;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: default;
+}
+.snowflake:nth-of-type(0) {
+  left: 1%;
+  -webkit-animation-delay: 0s, 0s;
+  animation-delay: 0s, 0s;
+}
+.snowflake:nth-of-type(1) {
+  left: 5%;
+  -webkit-animation-delay: 1s, 1s;
+  animation-delay: 1s, 1s;
+}
+.snowflake:nth-of-type(2) {
+  left: 12%;
+  -webkit-animation-delay: 6s, 0.5s;
+  animation-delay: 6s, 0.5s;
+}
+.snowflake:nth-of-type(3) {
+  left: 20%;
+  -webkit-animation-delay: 4s, 2s;
+  animation-delay: 4s, 2s;
+}
+.snowflake:nth-of-type(4) {
+  left: 30%;
+  -webkit-animation-delay: 2s, 2s;
+  animation-delay: 2s, 2s;
+}
+.snowflake:nth-of-type(5) {
+  left: 40%;
+  -webkit-animation-delay: 8s, 3s;
+  animation-delay: 8s, 3s;
+}
+.snowflake:nth-of-type(6) {
+  left: 50%;
+  -webkit-animation-delay: 6s, 2s;
+  animation-delay: 6s, 2s;
+}
+.snowflake:nth-of-type(7) {
+  left: 60%;
+  -webkit-animation-delay: 2.5s, 1s;
+  animation-delay: 2.5s, 1s;
+}
+.snowflake:nth-of-type(8) {
+  left: 70%;
+  -webkit-animation-delay: 1s, 0s;
+  animation-delay: 1s, 0s;
+}
+.snowflake:nth-of-type(9) {
+  left: 80%;
+  -webkit-animation-delay: 3s, 1.5s;
+  animation-delay: 3s, 1.5s;
+}
+
+
+
+
+@media screen and (max-width: 799px) {
+  .App {
+    min-width: none;
+  }
+  .container {
+    flex-direction: column;
+  }
+  .header {
+    font-size: 4em;
+  }
+  .header-container {
+    width: 100%;
+  }
+
+.main-container .section {
+  
+  padding: 0.5em;
+  margin: 12px 8px;
+  overflow-y:unset;
+  display: flex;
+}
+
+  .main-container {
+    width: 100%;
+  }
+
+
+.snow-globe .falling-snow {
+  clip-path: circle(42% at 50% 77%);
+}
+
+
+
+}
+
+/*
+Because of the way I set up the variable width and height snow globe, these media queries aren't perfect
+and can be glitchy with certain browser window sizes, causing snowflakes to show up outside the globe region.
+Seems ok on iphone and full screen browser on mac, need to rethink the way I set up the globe with nft image inside
+*/
+
+@media screen and (min-width: 800px) and (max-width: 999px) {
+
+  .snow-globe .falling-snow {
+    clip-path: circle(40% at 50% 78%);
+    /* background-color:rgba(255,0,0,0.5); */
+  }
+
+}
+
+
+@media screen and (min-width: 1000px) and (max-width: 1099px) {
+
+  .snow-globe .falling-snow {
+    clip-path: circle(40% at 50% 78%);
+    /* background-color:rgba(0,0,255,0.5); */
+  }
+
+}
+
+
+@media screen and (min-width: 1100px) and (max-width: 1199px)   {
+
+  .snow-globe .falling-snow {
+    clip-path: circle(44% at 50% 74%);
+    /* background-color:rgba(0,255,255,0.5); */
+  }
+
+}
+
+@media screen and (min-width: 1200px) and (max-width: 1299px)  {
+
+  .snow-globe .falling-snow {
+    clip-path: circle(46% at 50% 69%);
+    /* background-color:rgba(255,235,2 ,0.5); */
+  }
+
+}
+
+@media screen and (min-width: 1300px) and (max-width: 1399px)  {
+
+  .snow-globe .falling-snow {
+    clip-path: circle(47% at 50% 65%);
+    /* background-color:rgba(20,235,2 ,0.5); */
+  }
+
+}
+
+
+@media screen and (min-width: 1400px)  {
+
+  .snow-globe .falling-snow {
+    clip-path: circle(44% at 50% 59%);
+    /* background-color:rgba(172,135,122 ,0.5); */
+  }
+
+}
+
+@media screen and (min-width: 800px) {
+  .App {
+    min-width: 1000px;
+  }
+  .container {
+    flex-direction: row;
+  }
+
+  .header-container {
+    width: 50%;
+  }
+  .main-container {
+    width: 50%;
+  }
+}
+
+
+.main-container .section.visible {
+  display: flex;
+}
+
+.main-container .section.hidden {
+  display: none;
 }

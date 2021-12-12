@@ -1,0 +1,31 @@
+{
+    "name": "Snowman #33",
+    "symbol": "HOLIDAZE",
+    "image": "32.png",
+    "attributes": [
+      { "trait_type": "body", "value": "White Snow" },
+      { "trait_type": "hat", "value": "Gold Crown" },
+      { "trait_type": "eyes", "value": "Black Buttons" },
+      { "trait_type": "nose", "value": "Orange Carrot" },
+      { "trait_type": "expression", "value": "Smiling" },
+      { "trait_type": "scarf", "value": "Red Smooth" },
+      { "trait_type": "arms", "value": "Wooden" },
+      { "trait_type": "body decoration", "value": "Black Buttons" }
+    ],
+    "collection": { "name": "HoliDaze NFT", "family": "Snowmen" },
+    "properties": {
+      "files": [
+        {
+          "uri": "32.png",
+          "type": "image/png"
+        }
+      ],
+      "creators": [
+        {
+          "address": "EgocU1AYutsGW8ZbmiP3DRirZhnyWWJPqXBnrpkh98Wu",
+          "share": 100
+        }
+      ]
+    }
+  }
+  
