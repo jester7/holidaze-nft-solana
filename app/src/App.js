@@ -136,7 +136,7 @@ const renderMintedItems = () => (
       
           </div>
           <div className={currentSection === "traits" ? "traits section visible" : "traits section hidden"}><h2 className="main-heading">Traits</h2>
-          <p>There are many wonderful traits in this collection.</p>          
+          <p>There are many wonderful traits in this collection. Legend has it there are even a few mythical black snowmen made with snow mixed with the ashes of a remote Antarctic volcano.</p>          
           </div>
           {!walletAddress && renderNotConnectedContainer()}
 
