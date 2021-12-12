@@ -120,7 +120,7 @@ const renderMintedItems = () => (
             <li id="collection" className={currentSection === "collection" ? "navbar-item collection selected" : "navbar-item collection"}> <a href="#collection" onClick={() => switchToSection("collection")}>Collection</a> </li>
             <li id="traits" className={currentSection === "traits" ? "navbar-item traits selected" : "navbar-item traits"}> <a href="#traits" onClick={() => switchToSection("traits")}>Traits</a> </li>
             <li className="navbar-item twitter icon"> <a className="icon" rel="noreferrer" target="_blank" href={TWITTER_LINK}>JovanJester</a> </li>
-            <li className="navbar-item github icon"> <a className="icon" href="#github">GitHub</a> </li>
+            <li className="navbar-item github icon"> <a className="icon" rel="noreferrer" target="_blank" href="https://github.com/jester7/holidaze-nft-solana">GitHub</a> </li>
 
           </ul>
           <div className={currentSection === "home" ? "home section visible" : "home section hidden"}><h2 className="main-heading">Home</h2>
