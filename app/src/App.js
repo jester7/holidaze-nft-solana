@@ -9,9 +9,10 @@ const App = () => {
   const [walletAddress, setWalletAddress] = useState(null);
   const [hasPhantomWallet, setHasPhantomWallet] = useState(false);
   const [currentSection, setCurrentSection] = useState("home");
-  // const [machineStats, setMachineStats] = useState(null);
   const [mints, setMints] = useState([]);
   const [isLoadingMints, setIsLoadingMints] = useState(false);
+  const [currentNFTName, setCurrentNFTName] =useState(null);
+  const [currentOwner, setCurrentOwner] =useState(null);
 
   const checkIfWalletIsConnected = async () => {
     try {
@@ -48,14 +49,24 @@ const App = () => {
 
   const renderNotConnectedContainer = () => (
     <div className="section not-connected">
-      <h2 className="main-heading">Connect your Solana wallet to get started</h2>
-      {hasPhantomWallet && <button
-      className="cta-button connect-wallet-button"
-      onClick={connectWallet}
-    >
-      Connect to Phantom Wallet
-    </button>}
-    {!hasPhantomWallet && <p>You need to download the <a rel="noreferrer" target="_blank" href="https://phantom.app">Phantom Solana Wallet</a> first.</p>}
+      <h2 className="main-heading">Connect your wallet to get started</h2>
+      {hasPhantomWallet && (
+        <button
+          className="cta-button connect-wallet-button"
+          onClick={connectWallet}
+        >
+          Connect to Phantom Solana Wallet
+        </button>
+      )}
+      {!hasPhantomWallet && (
+        <p>
+          You need to download the{" "}
+          <a rel="noreferrer" target="_blank" href="https://phantom.app">
+            Phantom Solana Wallet
+          </a>{" "}
+          first.
+        </p>
+      )}
     </div>
   );
 
@@ -63,22 +74,19 @@ const App = () => {
     setCurrentSection(section);
   };
 
-  // const renderMissingWalletContainer = () => (
-  //   <div className="section no-wallet error">
-  //     <h2 className="main-heading">NO wallet found</h2>
-  //   </div>
-  // );
+  const renderInGlobe = (nft) => {
+    setCurrentNFTName(nft.name);
+  }
 
-
-const renderMintedItems = () => (
-  <div className="nft-container">
+  const renderMintedItems = () => (
+    <div className="nft-container">
       {mints.map((mint) => (
-        <div className="nft-item" key={mint}>
-          <img src={mint} alt={`Minted NFT ${mint}`} />
+        <div className="nft-item" key={mint.name} onClick={()=>renderInGlobe(mint)}>
+          <img src={mint.uri} alt={`Minted NFT ${mint.name}`} />
         </div>
       ))}
-  </div>
-);
+    </div>
+  );
 
   useEffect(() => {
     const onLoad = async () => {
@@ -112,35 +120,138 @@ const renderMintedItems = () => (
               <span className="snowflake">❄</span>
               <span className="snowflake">❄</span>
             </div>
-      </div>
+            <div className="label">{currentNFTName}</div>
+            <div className="sublabel">{currentOwner}</div>
+          </div>
         </div>
         <div className="main-container">
           <ul className="navbar section">
-            <li id="home" className={currentSection === "home" ? "navbar-item home selected" : "navbar-item home"}> <a href="#home" onClick={() => switchToSection("home")}>Home</a> </li>
-            <li id="collection" className={currentSection === "collection" ? "navbar-item collection selected" : "navbar-item collection"}> <a href="#collection" onClick={() => switchToSection("collection")}>Collection</a> </li>
-            <li id="traits" className={currentSection === "traits" ? "navbar-item traits selected" : "navbar-item traits"}> <a href="#traits" onClick={() => switchToSection("traits")}>Traits</a> </li>
-            <li className="navbar-item twitter icon"> <a className="icon" rel="noreferrer" target="_blank" href={TWITTER_LINK}>JovanJester</a> </li>
-            <li className="navbar-item github icon"> <a className="icon" rel="noreferrer" target="_blank" href="https://github.com/jester7/holidaze-nft-solana">GitHub</a> </li>
-
+            <li
+              id="home"
+              className={
+                currentSection === "home"
+                  ? "navbar-item home selected"
+                  : "navbar-item home"
+              }
+            >
+              {" "}
+              <a href="#home" onClick={() => switchToSection("home")}>
+                Home
+              </a>{" "}
+            </li>
+            <li
+              id="collection"
+              className={
+                currentSection === "collection"
+                  ? "navbar-item collection selected"
+                  : "navbar-item collection"
+              }
+            >
+              {" "}
+              <a
+                href="#collection"
+                onClick={() => switchToSection("collection")}
+              >
+                Collection
+              </a>{" "}
+            </li>
+            <li
+              id="traits"
+              className={
+                currentSection === "traits"
+                  ? "navbar-item traits selected"
+                  : "navbar-item traits"
+              }
+            >
+              {" "}
+              <a href="#traits" onClick={() => switchToSection("traits")}>
+                Traits
+              </a>{" "}
+            </li>
+            <li className="navbar-item twitter icon">
+              {" "}
+              <a
+                className="icon"
+                rel="noreferrer"
+                target="_blank"
+                href={TWITTER_LINK}
+              >
+                JovanJester
+              </a>{" "}
+            </li>
+            <li className="navbar-item github icon">
+              {" "}
+              <a
+                className="icon"
+                rel="noreferrer"
+                target="_blank"
+                href="https://github.com/jester7/holidaze-nft-solana"
+              >
+                GitHub
+              </a>{" "}
+            </li>
           </ul>
-          <div className={currentSection === "home" ? "home section visible" : "home section hidden"}><h2 className="main-heading">Home</h2>
-          <p>The <span className="holidaze">HoliDaze NFT Collection</span> features an adorable, yet occasionally confused cast of snowmen, gingerbread figures, and elves.</p>
-          <p>These NFTs make the perfect stocking/wallet stuffers.</p>
-          <p>Right clicking is highly discouraged. Mint yours today!</p>
-          {walletAddress && <CandyMachine walletAddress={window.solana} updateMints={setMints} updateIsLoadingMints={setIsLoadingMints} />}
+          <div
+            className={
+              currentSection === "home"
+                ? "home section visible"
+                : "home section hidden"
+            }
+          >
+            <h2 className="main-heading">Home</h2>
+            <p>
+              The <span className="holidaze">HoliDaze NFT Collection</span> features an adorable, yet occasionally confused
+              cast of snowmen&mdash;gingerbread figures and elves could join
+              them in the future.
+            </p>
+            <p>
+              These NFTs make the perfect stocking/wallet stuffers. Right
+              clicking is <em>highly</em> discouraged.
+            </p>
+            <p>Mint yours today!</p>
           </div>
-          <div className={currentSection === "collection" ? "collection section visible" : "collection section hidden"}><h2 className="main-heading">Collection</h2>
-          <p>Here are all the NFTs from the collection that have already been minted.</p>
-          {isLoadingMints && <div className="loading-indicator"><span className="label">Loading minted NFTs</span></div>}
-          {mints.length > 0 && renderMintedItems()}
-      
+          <div
+            className={
+              currentSection === "collection"
+                ? "collection section visible"
+                : "collection section hidden"
+            }
+          >
+            <h2 className="main-heading">Collection</h2>
+            <p>
+              These are all the beautiful Snowmen NFTs from the collection that
+              have been minted. <em>Left click</em> on them to see them in their
+              full glory inside the snow globe.
+            </p>
+            {isLoadingMints && (
+              <div className="loading-indicator">
+                <span className="label">Loading minted NFTs</span>
+              </div>
+            )}
+            {mints.length > 0 && renderMintedItems()}
           </div>
-          <div className={currentSection === "traits" ? "traits section visible" : "traits section hidden"}><h2 className="main-heading">Traits</h2>
-          <p>There are many wonderful traits in this collection. Legend has it there are even a few mythical black snowmen made with snow mixed with the ashes of a remote Antarctic volcano.</p>          
+          <div
+            className={
+              currentSection === "traits"
+                ? "traits section visible"
+                : "traits section hidden"
+            }
+          >
+            <h2 className="main-heading">Traits</h2>
+            <p>
+              Legends tell of some mythical black snowmen made with the mixture
+              of snow and ashes from a remote Antarctic volcano.
+            </p>
+            <p>There are many wonderful traits in this collection.</p>
           </div>
           {!walletAddress && renderNotConnectedContainer()}
-
-          
+          {walletAddress && (
+            <CandyMachine
+              walletAddress={window.solana}
+              updateMints={setMints}
+              updateIsLoadingMints={setIsLoadingMints}
+            />
+          )}
         </div>
       </div>
     </div>

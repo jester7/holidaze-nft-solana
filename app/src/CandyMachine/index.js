@@ -332,15 +332,17 @@ const getCandyMachineState = async () => {
     true
   );
   
-  if (data.length !== 0) { //TODO
+  // fetch json from arweave and add nft objects with name and uri to state
+  if (data.length !== 0) {
     for (const mint of data) {
       const response = await fetch(mint.data.uri);
       const parse = await response.json();
+      let nft = {name:mint.data.name, uri:parse.image};
       console.log("Past Minted NFT", mint);
-      console.log("name: ", mint.data.name);
+      console.log("name: ", nft.name);
 
-      if (!mints.find((mint) => mint === parse.image)) {
-        setMints((prevState) => [...prevState, parse.image]);
+      if (!mints.find((name) => name === nft.name)) {
+        setMints((prevState) => [...prevState, nft]);
       }
     }
   }
@@ -361,7 +363,7 @@ const renderDropTimer = () => {
   }
 
   // else return current drop date
-  return <p>{`Drop Date: ${machineStats.goLiveDateTimeString}`}</p>;
+  return null;
 };
 
 
@@ -370,24 +372,31 @@ useEffect(() => {
   updateIsLoadingMints(isLoadingMints);
 }, [mints, updateMints, updateIsLoadingMints, isLoadingMints]);
 
-
   return (
     machineStats && (
-    <div className="mint-container">
+    <div className="section mint-container">
+      <h2 className="main-heading">{`NFTs minted: ${machineStats.itemsRedeemed} out of ${machineStats.itemsAvailable}`}</h2>
       {renderDropTimer()}
-      <p>{`Items Minted: ${machineStats.itemsRedeemed} / ${machineStats.itemsAvailable}`}</p>
+      {/* <p>{`Items Minted: ${machineStats.itemsRedeemed} / ${machineStats.itemsAvailable}`}</p> */}
       {/* Check to see if these properties are equal! */}
-      {machineStats.itemsRedeemed === machineStats.itemsAvailable ? (
-          <p className="sub-text">Sold Out 🙊</p>
-        ) : (
-          <button
+      {machineStats.itemsRedeemed === machineStats.itemsAvailable && (
+          <p className="sub-text">Sold Out!</p>
+        ) }
+          {machineStats.itemsRedeemed < machineStats.itemsAvailable && isMinting && (
+            <div className="loading-indicator">
+              <span className="label">Minting in progress</span>
+            </div>
+          )}
+          {machineStats.itemsRedeemed < machineStats.itemsAvailable && !isMinting && (
+            <button
             className="cta-button mint-button"
             onClick={mintToken}
             disabled={isMinting}
           >
             Mint NFT
           </button>
-        )}
+          )}
+        
     </div>
     )
   );
