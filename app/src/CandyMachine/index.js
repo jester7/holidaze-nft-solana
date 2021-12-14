@@ -341,7 +341,7 @@ const getCandyMachineState = async () => {
       console.log("Past Minted NFT", mint);
       console.log("name: ", nft.name);
 
-      if (!mints.find((name) => name === nft.name)) {
+      if (!mints.find((mint) => mint === nft.uri)) {
         setMints((prevState) => [...prevState, nft]);
       }
     }

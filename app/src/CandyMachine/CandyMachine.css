@@ -24,17 +24,6 @@
   object-fit: cover;
 }
 
-/* next two selectors are to hide an nft that didn't upload properly to arweave
-   due to some problems I was having with metaplex candy machine
-*/
-.collection.section .nft-item:nth-of-type(5)  {
-  display: none;
-}
-
-img[src="3.png"] {
-  display:none;
-}
-
 .main-container .section.mint-container .cta-button {
   width:100%;
 }

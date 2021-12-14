@@ -188,24 +188,6 @@
   font-size: 1.3em;
 }
 
-.main-container .section.home p:first-of-type:first-letter,
-.main-container .section.traits p:first-of-type:first-letter {
-  color: var(--color-green-dark);
-  float: left;
-  font-family: arpona,serif;
-  font-weight:800;
-  font-size: 3.5em;
-  line-height: 3.5em;
-  margin-top:.1em;
-  margin-right:.1em;
-}
-
-.main-container .section.home p:first-of-type,
-.main-container .section.traits p:first-of-type
- {
-  text-indent: 0;
-}
-
 .main-container h2 {
   font-size: 2em;
   font-family: arpona, serif;
@@ -539,15 +521,45 @@ a:hover {
     transform: rotate(0deg);
   }
 }
+/* "background: url('./assets/snowglobe-front.png') no-repeat bottom center, url('snowman') no-repeat center calc(100% - 90px), url('./assets/snowglobe-rear.png') no-repeat bottom center"  */
+.snow-globe-inner {
+  position: absolute;
+  background-image: url("./assets/snowglobe-front.png");
+background-size: contain,  contain;
+background-position: bottom center, bottom center;
+background-repeat: no-repeat; /*size 60%, position: center calc(100% - 90px) */
+width:100%;
+height:100%;
+z-index: 10;
+}
+
+.snow-globe-rear {
+  position: absolute;
+  background-image: url("./assets/snowglobe-rear.png");
+background-size: contain;
+background-position: bottom center;
+background-repeat: no-repeat;
+width:100%;
+height:100%;
+z-index: 1;
+
+  bottom:0;
+}
+
+.snow-globe .nft-display {
+  display: block;
+  position: absolute;
+  height: 60vh;
+  width:auto;
+  z-index: 5;
+  bottom:2%;
+}
 
 .snow-globe {
   margin: 0 0 16px 0;
-  background-image: url("./assets/snowglobe-front.png"),
-    url("./assets/snowman-sample-nft.png"), url("./assets/snowglobe-rear.png");
   flex: fit-content;
-  background-size: contain, 60%, contain;
-  background-position: bottom center, center calc(100% - 90px), bottom center;
-  background-repeat: no-repeat;
+  display: flex;
+  justify-content:center;
   rotate: 0deg;
   transform-origin: bottom;
   animation-duration: 0.5s;
@@ -560,6 +572,7 @@ a:hover {
 
 
 .snow-globe .label, .snow-globe .sublabel {
+  z-index: 100;
 color:rgba(126, 107, 66, 0.7);
 text-shadow:-1px -1px 1px rgba(0,0,0,0.8);
 display: inline-block;
@@ -579,13 +592,13 @@ opacity:0.45;
   font-weight: 600;
   bottom:5vh;  
 }
-
+/* 
 .snow-globe .sublabel {
   font-size:1vh;
 font-weight: 400;
 bottom:4vh;
 
-}
+} */
 
 .snow-globe:hover {
   animation: shake-animation 0.5s linear 2;
@@ -775,6 +788,9 @@ bottom:4vh;
   width: 100%;
 }
 
+.snow-globe .nft-display {
+  height: 50vh;
+}
 
 .snow-globe .falling-snow {
   clip-path: circle(42% at 50% 77%);

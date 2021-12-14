@@ -12,7 +12,7 @@ const App = () => {
   const [mints, setMints] = useState([]);
   const [isLoadingMints, setIsLoadingMints] = useState(false);
   const [currentNFTName, setCurrentNFTName] =useState(null);
-  const [currentOwner, setCurrentOwner] =useState(null);
+  const [currentNFTUri, setCurrentNFTUri] =useState("https://www.arweave.net/ORjoSwgukTT1dlBYax-Ox_DtAGB8rOfqPxM6lZQaRKY?ext=png");
 
   const checkIfWalletIsConnected = async () => {
     try {
@@ -76,15 +76,27 @@ const App = () => {
 
   const renderInGlobe = (nft) => {
     setCurrentNFTName(nft.name);
+    setCurrentNFTUri(nft.uri);
   }
+
+  /* this function is a hack to compensate for some metaplex candy machine errors 
+  that occurred silently when uploading assets to arweave */
+  const renderItems = (mint) => {
+    console.log("render items mint.uri.length", mint.uri.length);
+    if (mint.uri.length < 10) {
+      return null;
+    } else {
+      return (<div className="nft-item" key={mint.name} onClick={()=>renderInGlobe(mint)}>
+      <img src={mint.uri} alt={`Minted NFT ${mint.name}`} />
+    </div>);
+    }
+    
+  };
 
   const renderMintedItems = () => (
     <div className="nft-container">
-      {mints.map((mint) => (
-        <div className="nft-item" key={mint.name} onClick={()=>renderInGlobe(mint)}>
-          <img src={mint.uri} alt={`Minted NFT ${mint.name}`} />
-        </div>
-      ))}
+      {mints.map((mint) => renderItems(mint)
+      )}
     </div>
   );
 
@@ -108,6 +120,7 @@ const App = () => {
             <span className="subheader">NFT Collection</span>
           </p>
           <div className="snow-globe">
+            <div className="snow-globe-inner">
             <div className="falling-snow">
               <span className="snowflake">❄</span>
               <span className="snowflake">❄</span>
@@ -120,8 +133,10 @@ const App = () => {
               <span className="snowflake">❄</span>
               <span className="snowflake">❄</span>
             </div>
+            </div>
+            <div className="snow-globe-rear"></div>
+            <img className="nft-display" alt={currentNFTName} src={currentNFTUri} />
             <div className="label">{currentNFTName}</div>
-            <div className="sublabel">{currentOwner}</div>
           </div>
         </div>
         <div className="main-container">
