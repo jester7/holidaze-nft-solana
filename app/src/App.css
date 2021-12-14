@@ -521,7 +521,7 @@ a:hover {
     transform: rotate(0deg);
   }
 }
-/* "background: url('./assets/snowglobe-front.png') no-repeat bottom center, url('snowman') no-repeat center calc(100% - 90px), url('./assets/snowglobe-rear.png') no-repeat bottom center"  */
+
 .snow-globe-inner {
   position: absolute;
   background-image: url("./assets/snowglobe-front.png");
